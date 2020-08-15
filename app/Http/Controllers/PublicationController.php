@@ -14,7 +14,7 @@ class PublicationController extends Controller
 
     public function create()
     {
-        //
+        return view('publications.create');
     }
 
     public function store(Request $request)
