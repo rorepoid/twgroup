@@ -19,7 +19,14 @@ class PublicationController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        auth()->user()->publications()->create($validatedData);
+
+        return redirect()->action('PublicationController@index');
     }
 
     public function show(Publication $publication)
