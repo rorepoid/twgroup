@@ -36,7 +36,7 @@ class PublicationController extends Controller
 
     public function edit(Publication $publication)
     {
-        //
+        return view('publications.edit', compact('publication'));
     }
 
     public function update(Request $request, Publication $publication)
