@@ -14,7 +14,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        return view('publications.index', ['publications' => Publication::paginate(10)]);
     }
 
     /**
