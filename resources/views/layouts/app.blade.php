@@ -38,6 +38,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        @auth
+                            <li class="nav-item mr-4">
+                                <a class="nav-link" href="{{ route('publications.create') }}">New Publication</a>
+                            </li>
+                        @endauth
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
