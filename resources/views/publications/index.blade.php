@@ -17,7 +17,19 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rem quasi reiciendis, ut eligendi, facilis deleniti temporibus vero ipsum accusamus.</p>
 
                     <br>
-                    <a href="#" class="btn btn-outline-dark btn-sm">Read full article</a>
+                        <div class="d-flex">
+                            <a href="{{ route('publications.show', $publication) }}" class="btn btn-outline-dark btn-sm mr-4">Read full article</a>
+                            @auth
+                                @if($publication->user->id == auth()->user()->id)
+                                    <a href="{{ route('publications.edit', $publication) }}" class="btn btn-outline-success btn-sm mr-4">Edit</a>
+                                    <form action="{{ route('publications.destroy', $publication) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                @endif
+                            @endauth
+                        </div>
                     </div>
                 </div>
 
