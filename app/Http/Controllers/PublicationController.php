@@ -41,7 +41,14 @@ class PublicationController extends Controller
 
     public function update(Request $request, Publication $publication)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $publication->update($validatedData);
+
+        return redirect()->action('PublicationController@index');
     }
 
     public function destroy(Publication $publication)
