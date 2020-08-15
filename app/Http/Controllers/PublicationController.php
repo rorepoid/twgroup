@@ -9,7 +9,7 @@ class PublicationController extends Controller
 {
     public function index()
     {
-        return view('publications.index', ['publications' => Publication::paginate(10)]);
+        return view('publications.index', ['publications' => Publication::orderBy('updated_at', 'desc')->paginate(10)]);
     }
 
     public function create()
