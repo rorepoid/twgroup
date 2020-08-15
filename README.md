@@ -1,3 +1,27 @@
+### Desafío 2: Laravel cuenta con un ORM llamado Eloquent, este ORM nos permite simplificar las consultas a la base de datos, imagina los siguientes modelos con los siguientes atributos.
+
+- Publication (id, title, content, user_id)
+- Comment (id, publication_id, content, status)
+
+Imagina que existe la relación "Una publicación puede tener 0 o más comentarios", ¿Cómo definirías las funciones de relación en ambos modelos?
+```
+class Publication extends Model
+{
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+}
+
+class Comment extends Model
+{
+    public function publication()
+    {
+        return $this->belongsTo(Publication::class);
+    }
+}
+```
+
 ### Desafío 3: Imaginando los modelos anteriormente mencionados, crea una Query en Eloquent (Obligatorio) que obtenga: Todas las publicaciones que contengan comentarios con la palabra "Hola" en su contenido, y que además posean status "APROBADO".
 ```
 // Arrange
