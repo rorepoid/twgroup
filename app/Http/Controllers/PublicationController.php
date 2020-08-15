@@ -7,79 +7,54 @@ use Illuminate\Http\Request;
 
 class PublicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('publications.index', ['publications' => Publication::orderBy('updated_at', 'desc')->paginate(10)]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('publications.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        auth()->user()->publications()->create($validatedData);
+
+        return redirect()->action('PublicationController@index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Publication  $publication
-     * @return \Illuminate\Http\Response
-     */
     public function show(Publication $publication)
     {
-        //
+        return view('publications.show', compact('publication'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Publication  $publication
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Publication $publication)
     {
-        //
+        return view('publications.edit', compact('publication'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Publication  $publication
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Publication $publication)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $publication->update($validatedData);
+
+        return redirect()->action('PublicationController@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Publication  $publication
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Publication $publication)
     {
-        //
+        $publication->delete();
+
+        return redirect()->action('PublicationController@index');
     }
 }
