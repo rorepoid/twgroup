@@ -18,5 +18,6 @@ Route::get('/', 'PublicationController@index');
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
+    Route::post('/publications/comments/{publication}', 'CommentController@store')->name('comments.store');
     Route::resource('/publications', 'PublicationController');
 });

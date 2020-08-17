@@ -11,7 +11,7 @@
             @forelse($publications as $publication)
                 <div class="row mb-5">
                     <div class="col-9">
-                    <a href="#" class="text-dark"><h1>{{ $publication->title }}</h1></a>
+                    <a href="{{ route('publications.show', $publication) }}" class="text-dark"><h1>{{ $publication->title }}</h1></a>
                     <a href="#"><span class="badge badge-info text-uppercase">{{ $publication->user->name }}</span></a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium ipsum, similique debitis saepe soluta, vero provident ab atque fuga molestias magni repellat labore adipisci! Sapiente deleniti numquam minus adipisci reiciendis at, assumenda odit itaque tempore voluptas, repellat sequi ab quibusdam.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rem quasi reiciendis, ut eligendi, facilis deleniti temporibus vero ipsum accusamus.</p>
