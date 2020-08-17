@@ -22,6 +22,6 @@ class Publication extends Model
 
     public function isCommentedBy(User $user)
     {
-        return true;
+        return $this->comments->where('user_id', $user->id)->count() > 0;
     }
 }

@@ -6,7 +6,7 @@
     <p>Posted by <span class="text-primary">{{ $publication->user->name }}</span> - {{ \Carbon\Carbon::createFromTimeStamp(strtotime($publication->updated_at))->diffForHumans() }}</p>
     <p class="lead">{{ $publication->content }}</p>
     <hr>
-    @if($publication->isCommentedBy(auth()->user()))
+    @if(!$publication->isCommentedBy(auth()->user()))
         <form action="{{ route('comments.store', $publication) }}" method="POST">
             @csrf
             <div class="form-group">
