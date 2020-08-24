@@ -9,15 +9,19 @@
 
         <div class="col-12 col-lg-9 mb-5">
             @forelse($publications as $publication)
-                <div class="row mb-5">
-                    <div class="col-9">
-                    <a href="{{ route('publications.show', $publication) }}" class="text-dark"><h1>{{ $publication->title }}</h1></a>
-                    <a href="#"><span class="badge badge-info text-uppercase">{{ $publication->user->name }}</span></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium ipsum, similique debitis saepe soluta, vero provident ab atque fuga molestias magni repellat labore adipisci! Sapiente deleniti numquam minus adipisci reiciendis at, assumenda odit itaque tempore voluptas, repellat sequi ab quibusdam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rem quasi reiciendis, ut eligendi, facilis deleniti temporibus vero ipsum accusamus.</p>
+                <div class="row mb-5 card card-body rounded-lg border border-dark shadow">
+                    <div class="col-12">
+                        <a href="{{ route('publications.show', $publication) }}" class="text-dark text-decoration-none"><h1>{{ $publication->title }}</h1></a>
+                        <span class="badge text-secondary text-uppercase user-select-none">
+                            {{ $publication->user->name }} - {{ \Carbon\Carbon::createFromTimeStamp(strtotime($publication->updated_at))->diffForHumans() }}
+                        </span>
+                        <div class="text-break mt-3 ml-1">
+                            <p style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+                            >{{ $publication->title }}
+                            </p>
+                        </div>
 
-                    <br>
-                        <div class="d-flex">
+                        <div class="d-flex ml-1">
                             <a href="{{ route('publications.show', $publication) }}" class="btn btn-outline-dark btn-sm mr-4">Read full article</a>
                             @auth
                                 @if($publication->user->id == auth()->user()->id)
