@@ -50,14 +50,17 @@ class QueryFilterTest extends TestCase
         $publication1->comments()->createMany([
             [
                 'content' => 'Hola, saludos',
+                'user_id' => $user->id,
                 'status' => 'APROBADO'
             ],
             [
                 'content' => 'this is an example comment',
+                'user_id' => $user->id,
                 'status' => 'NONE'
             ],
             [
                 'content' => 'Hola a todos',
+                'user_id' => $user->id,
                 'status' => 'PADORU'
             ]
         ]);
@@ -65,14 +68,17 @@ class QueryFilterTest extends TestCase
         $publication2->comments()->createMany([
             [
                 'content' => 'Saludos a todos',
+                'user_id' => $user->id,
                 'status' => 'APROBADO'
             ],
             [
                 'content' => 'this is an example comment',
+                'user_id' => $user->id,
                 'status' => 'NONE'
             ],
             [
                 'content' => 'Hola a todos',
+                'user_id' => $user->id,
                 'status' => 'PADORU'
             ]
         ]);
@@ -80,14 +86,17 @@ class QueryFilterTest extends TestCase
         $publication3->comments()->createMany([
             [
                 'content' => 'Hola, saludos',
+                'user_id' => $user->id,
                 'status' => 'APROBADO'
             ],
             [
                 'content' => 'this is an example comment',
+                'user_id' => $user->id,
                 'status' => 'NONE'
             ],
             [
                 'content' => 'Hola a todos',
+                'user_id' => $user->id,
                 'status' => 'APROBADO'
             ]
         ]);
@@ -95,10 +104,12 @@ class QueryFilterTest extends TestCase
         $publication5->comments()->createMany([
             [
                 'content' => 'this is an example comment',
+                'user_id' => $user->id,
                 'status' => 'NONE'
             ],
             [
                 'content' => 'Hola a todos',
+                'user_id' => $user->id,
                 'status' => 'PADORU'
             ]
         ]);
