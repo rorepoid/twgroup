@@ -19,19 +19,21 @@ class PublicationCommentRelationTest extends TestCase
         // Arrange
         $user = factory(User::class)->create();
         $publication = factory(Publication::class)->create(['user_id' => $user->id]);
-        
+
         // Act
         $publication->comments()->createMany([
             [
                 'content' => 'this is a comment',
+                'user_id' => $user->id,
                 'status' => 'APROBADO'
             ],
             [
                 'content' => 'this is another comment',
+                'user_id' => $user->id,
                 'status' => 'NONE'
             ]
         ]);
-        
+
         // Assert
         $this->assertEquals(2, $publication->comments()->count());
         $this->assertEquals($publication->id, Comment::find(1)->publication_id);
