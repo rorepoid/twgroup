@@ -27,9 +27,9 @@
                         <h4>Discussion</h4>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg border-secondary">
+                <div class="bg-white rounded-lg border-secondary p-3">
                     <h5 class="card-title">{{ $comment->user->name }}</h5>
-                    <p class="card-text">{{ $comment->content }}</p>
+                    <p class="text-secondary h5">{{ $comment->content }}</p>
                 </div>
             </div>
         @empty
