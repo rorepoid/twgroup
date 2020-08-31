@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PublicationController@index');
+Route::resource('/publications', 'PublicationController')->only([
+    'index', 'show'
+]);
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::post('/publications/comments/{publication}', 'CommentController@store')->name('comments.store');
-    Route::resource('/publications', 'PublicationController');
+    Route::resource('/publications', 'PublicationController')->except([
+        'index', 'show'
+    ]);
 });
