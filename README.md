@@ -1,3 +1,46 @@
+### Desafío 1: Al momento de iniciar un nuevo proyecto en Laravel debemos realizar una serie de pasos para configurar el proyecto dependiendo de sus requerimientos. Imagina que necesitamos una plataforma sobre Laravel que utilizará un motor de base de datos MySQL/MariaDB, un servidor de correos SMTP y un servidor Redis. ¿Cuáles son los pasos que consideras necesarios para dejar la aplicación funcionando en modo de desarrollo? (Describe los comandos necesarios que ejecutarías y que archivos modificarías en base a los requerimientos mencionados).
+
+### SMTP
+
+Debemos tener una cuenta de algún servicio de smtp del cual laravel tenga soporte, de allí podemos obtener las credenciales y colocarlas en el archivo `.env`. Ejemplo:
+
+```jsx
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=bb99a9aa4f9999
+MAIL_PASSWORD=54s654s654s654
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+### redis
+
+Laravel cuenta con soporte a redis para utilizarlo como caché, base o base de datos, también podemos usarlo para almacenar las sesiones que por defecto se guardan en `file` , lo único que necesitamos hacer es asegurarnos de tener `phpredis` o `predis` instalado y luego proceder a definir su uso en el archivo de entorno `.env` con las credenciales adecuadas.
+
+```jsx
+SESSION_DRIVER=redis
+REDIS_CLIENT=predis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=clave_ultra_secreta
+REDIS_PORT=6379
+```
+
+### Mysql/MariaDB
+
+Para configurar la base de datos con laravel, primero se necesita tener el servicio de mysql o mariadb activado, obtener el host y el puerto, luego crear la base de datos que se utilizará, una vez creada la base de datos, nos dirigimos al archivo .env para colocar las credenciales de la base de datos.
+
+```jsx
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cool_database
+DB_USERNAME=root
+DB_PASSWORD=secret
+```
+
 ### Desafío 2: Laravel cuenta con un ORM llamado Eloquent, este ORM nos permite simplificar las consultas a la base de datos, imagina los siguientes modelos con los siguientes atributos.
 
 - Publication (id, title, content, user_id)
